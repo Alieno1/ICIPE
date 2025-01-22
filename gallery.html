@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gallery</title>
+    <link rel="stylesheet" href="assets/css/gallery.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <style>
+      /* Gallery Section Styles */
+      .gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 10px;
+        margin: 20px;
+      }
+
+      .gallery img {
+        width: 100%;
+        height: auto;
+        cursor: pointer;
+        border-radius: 8px;
+        transition: transform 0.2s;
+      }
+
+      .gallery img:hover {
+        transform: scale(1.05);
+      }
+
+      /* Lightbox Styles */
+      .lightbox {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+      }
+
+      .lightbox img {
+        max-width: 90%;
+        max-height: 90%;
+        border-radius: 8px;
+      }
+
+      .lightbox .close {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        font-size: 30px;
+        color: white;
+        cursor: pointer;
+      }
+
+      /* Left and Right Navigation Arrows */
+      .lightbox .nav-arrow {
+        position: absolute;
+        top: 50%;
+        font-size: 40px;
+        color: white;
+        cursor: pointer;
+        transform: translateY(-50%);
+        padding: 10px;
+        background-color: rgba(0, 0, 0, 0.5);
+        border-radius: 50%;
+        user-select: none;
+      }
+
+      .lightbox .left-arrow {
+        left: 20px;
+      }
+
+      .lightbox .right-arrow {
+        right: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header section -->
+    <div class="header-photo"></div>
+
+    <!-- Navigation Bar -->
+    <div class="navbar">
+      <div class="navbar-logo">
+        <img src="assets/img/logo.png" alt="Logo" />
+      </div>
+      <button class="navbar-toggle" aria-label="Toggle navigation">
+        &#9776;
+        <!-- Hamburger icon -->
+      </button>
+      <div class="navbar-links">
+        <a href="index.html">Home</a>
+        <div class="dropdown">
+          <a href="#committee" class="dropbtn">Committee</a>
+          <div class="dropdown-content">
+            <a href="commitee.html">Committee Overview</a>
+            <a href="speakers.html">Speakers</a>
+          </div>
+        </div>
+        <a href="gallery.html">Gallery</a>
+        <div class="dropdown">
+          <a href="#registration" class="dropbtn">Registration</a>
+          <div class="dropdown-content">
+            <a href="#schedule">Schedule</a>
+            <a href="#submission">Paper Submission</a>
+            <a href="#payment">Payment</a>
+          </div>
+        </div>
+        <a href="#sponsors">Sponsors</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+
+    <!-- Gallery Section -->
+    <div class="gallery">
+      <!-- Add images to the gallery -->
+      <img src="assets/img/gallery/berlin_conference.jpg" alt="Photo 1" />
+      <img
+        src="assets/img/gallery/Historical-Origin-of-the-International-Conference-1.jpg"
+        alt="Photo 2"
+      />
+      <img src="assets/img/gallery/icafe3.jpg" alt="Photo 3" />
+      <img src="assets/img/gallery/4.jpg" alt="Photo 4" />
+      <img src="assets/img/gallery/5.jpeg" alt="Photo 5" />
+      <img src="assets/img/gallery/6.jpg" alt="Photo 6" />
+      <img src="assets/img/gallery/7.jpg" alt="Photo 7" />
+      <img src="assets/img/gallery/8.jpeg" alt="Photo 8" />
+      <img src="assets/img/gallery/9.jpg" alt="Photo 9" />
+      <img src="assets/img/gallery/10.jpg" alt="Photo 10" />
+      <img src="assets/img/photo11.jpg" alt="Photo 11" />
+      <img src="assets/img/photo12.jpg" alt="Photo 12" />
+      <img src="assets/img/photo13.jpg" alt="Photo 13" />
+      <img src="assets/img/photo14.jpg" alt="Photo 14" />
+      <img src="assets/img/photo15.jpg" alt="Photo 15" />
+      <img src="assets/img/photo16.jpg" alt="Photo 16" />
+      <img src="assets/img/photo17.jpg" alt="Photo 17" />
+      <img src="assets/img/photo18.jpg" alt="Photo 18" />
+      <img src="assets/img/photo19.jpg" alt="Photo 19" />
+      <img src="assets/img/photo20.jpg" alt="Photo 20" />
+      <img src="assets/img/photo21.jpg" alt="Photo 21" />
+      <img src="assets/img/photo22.jpg" alt="Photo 22" />
+      <img src="assets/img/photo23.jpg" alt="Photo 23" />
+      <img src="assets/img/photo24.jpg" alt="Photo 24" />
+      <img src="assets/img/photo25.jpg" alt="Photo 25" />
+      <img src="assets/img/photo26.jpg" alt="Photo 26" />
+      <img src="assets/img/photo27.jpg" alt="Photo 27" />
+      <img src="assets/img/photo28.jpg" alt="Photo 28" />
+      <img src="assets/img/photo29.jpg" alt="Photo 29" />
+      <img src="assets/img/photo30.jpg" alt="Photo 30" />
+    </div>
+
+    <!-- Lightbox for displaying full-size images -->
+    <div class="lightbox">
+      <span class="close" aria-label="Close lightbox">&times;</span>
+      <img src="" alt="Lightbox Image" id="lightbox-img" />
+      <span class="nav-arrow left-arrow" aria-label="Previous Image"
+        >&#10094;</span
+      >
+      <span class="nav-arrow right-arrow" aria-label="Next Image"
+        >&#10095;</span
+      >
+    </div>
+
+    <!-- Footer Section -->
+    <div class="footer">
+      <h2>Stay Connected</h2>
+      <div class="footer-container">
+        <div class="footer-logo">
+          <img src="assets/img/logo.png" alt="Site Logo" />
+        </div>
+        <div class="social-icons-footer">
+          <ul>
+            <li>
+              <a href="https://facebook.com" class="facebook"
+                ><i class="fab fa-facebook"></i
+              ></a>
+            </li>
+            <li>
+              <a href="https://twitter.com" class="twitter"
+                ><i class="fab fa-twitter"></i
+              ></a>
+            </li>
+            <li>
+              <a href="https://pinterest.com" class="pinterest"
+                ><i class="fab fa-pinterest"></i
+              ></a>
+            </li>
+          </ul>
+        </div>
+        <div class="site-info">
+          <p>
+            Designed and Developed by
+            <a
+              href="https://www.linkedin.com/in/himanshu-singh-7ab162243/"
+              rel="nofollow"
+              class="designer-link"
+              >Himanshu Singh</a
+            >
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- JavaScript for Toggling Navigation Links and Lightbox Functionality -->
+    <script>
+      // Toggle navbar links
+      document
+        .querySelector(".navbar-toggle")
+        .addEventListener("click", function () {
+          document.querySelector(".navbar-links").classList.toggle("active");
+        });
+
+      // Lightbox functionality
+      const galleryImages = document.querySelectorAll(".gallery img");
+      const lightbox = document.querySelector(".lightbox");
+      const lightboxImg = document.getElementById("lightbox-img");
+      const closeBtn = document.querySelector(".close");
+      const leftArrow = document.querySelector(".left-arrow");
+      const rightArrow = document.querySelector(".right-arrow");
+      let currentIndex = 0;
+
+      // Open lightbox on image click
+      galleryImages.forEach((image, index) => {
+        image.addEventListener("click", () => {
+          currentIndex = index; // Set the current index
+          lightbox.style.display = "flex";
+          lightboxImg.src = image.src;
+        });
+      });
+
+      // Close lightbox
+      closeBtn.addEventListener("click", () => {
+        lightbox.style.display = "none";
+      });
+
+      // Navigate to previous image
+      leftArrow.addEventListener("click", () => {
+        currentIndex =
+          (currentIndex - 1 + galleryImages.length) % galleryImages.length; // Loop to last image if at first
+        lightboxImg.src = galleryImages[currentIndex].src;
+      });
+
+      // Navigate to next image
+      rightArrow.addEventListener("click", () => {
+        currentIndex = (currentIndex + 1) % galleryImages.length; // Loop to first image if at last
+        lightboxImg.src = galleryImages[currentIndex].src;
+      });
+
+      // Close lightbox on outside click
+      lightbox.addEventListener("click", (event) => {
+        if (event.target === lightbox) {
+          lightbox.style.display = "none";
+        }
+      });
+    </script>
+  </body>
+</html>
