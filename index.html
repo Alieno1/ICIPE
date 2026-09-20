@@ -424,9 +424,9 @@
             </ul>
           </div>
            <!------TIME TABLE------->
-                  <div class="image-container">
-                      <img src="assets/img/time table.jpg" alt="Centered Image">
-                        </div>
+                  <div class="image-container text-center py-5">
+                      <img src="assets/img/time table.jpg" class="img-fluid rounded shadow-lg" alt="Time Table" style="max-width: 90%; border-radius: 12px; box-shadow: 0 16px 40px rgba(0,0,0,0.12);">
+                  </div>
 
 
 
@@ -434,7 +434,7 @@
 
 
 
-          <!----<div class="col-12">
+          <!-- <div class="col-12">
             <div class="schedule-area row wow fadeInDown" data-wow-delay="0.3s">
               <div class="schedule-tab-content col-12 clearfix">
                 <div class="tab-content" id="myTabContent">
@@ -787,7 +787,7 @@
           </div>
         </div>
       </div>
-    </section> ---->
+    </section> -->
 
 
 
@@ -1214,20 +1214,20 @@
     </section>
     <!-- Sponsors Section End -->
 
-    <!-- Contact Us Section 
+    <!-- Contact Us Section -->
     <section id="contact-map" class="section-padding">
       <div class="container">
         <div class="row">
-          <div class="col-12"> --->
+          <div class="col-12">
 
 
             <div class="section-title-header text-center">
               <h2 class="section-title wow fadeInUp" data-wow-delay="0.2s">Contact Us</h2>
-              <p class="wow fadeInDown" data-wow-delay="0.2s">text to be aaded <br> text 2 to be added</p>
+              <p class="wow fadeInDown" data-wow-delay="0.2s">Send us your queries and concerns below</p>
             </div>
           </div>
         </div>
-        <!---<div class="row justify-content-center">
+        <div class="row justify-content-center">
           <div class="col-lg-8 col-md-12 col-xs-12">
             <div class="container-form wow fadeInLeft" data-wow-delay="0.2s">
               <div class="form-wrapper">
@@ -1268,7 +1268,7 @@
         </div>
       </div>
     </section>
-    Contact Us Section End -->
+    <!-- Contact Us Section End -->
 
     <!-- Map Section Start -->
     <section id="google-map-area">
@@ -1332,11 +1332,11 @@ Gujarat-395007</li>
           <div class="col-lg-8 col-md-12 col-xs-12">
             <div class="subscribe-inner wow fadeInDown" data-wow-delay="0.3s">
               <h2 class="subscribe-title">To Get Nearly Updates</h2>
-              <form class="text-center form-inline">
-                <!--<input class="mb-20 form-control" name="email" placeholder="Enter Your Email Here">
-                <button type="submit" class="btn btn-common sub-btn" data-style="zoom-in" data-spinner-size="30" name="submit" id="submit">
+              <form class="text-center form-inline" id="subscribeForm">
+                <input type="email" class="mb-20 form-control" name="email" id="subscribeEmail" placeholder="Enter Your Email Here" required>
+                <button type="submit" class="btn btn-common sub-btn" data-style="zoom-in" data-spinner-size="30" name="submit" id="subscribeSubmit">
                   <span class="ladda-label"><i class="lni-check-box"></i> Subscribe</span>
-                </button>---->
+                </button>
               </form>
             </div>
             <div class="footer-logo">
@@ -1391,6 +1391,53 @@ Gujarat-395007</li>
     <script src="assets/js/wow.js"></script>
     <script src="assets/js/nivo-lightbox.js"></script>
     <script src="assets/js/video.js"></script>
-    <script src="assets/js/main.js"></script>      
+    <script src="assets/js/main.js"></script>
+    <script>
+      // API form submission hook for Contact Form
+      const contactForm = document.getElementById('contactForm');
+      if(contactForm) {
+          contactForm.addEventListener('submit', function(e) {
+              e.preventDefault();
+              const contactData = {
+                  name: document.getElementById('name').value,
+                  email: document.getElementById('email').value,
+                  subject: document.getElementById('msg_subject').value,
+                  message: document.getElementById('message').value
+              };
+              
+              fetch('/api/contact', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify(contactData)
+              }).then(res => res.json()).then(data => {
+                  alert(data.message);
+                  contactForm.reset();
+              }).catch(err => {
+                  alert('There was an error submitting the form.');
+              });
+          });
+      }
+
+      // API form submission hook for Subscribe Form
+      const subscribeForm = document.getElementById('subscribeForm');
+      if(subscribeForm) {
+          subscribeForm.addEventListener('submit', function(e) {
+              e.preventDefault();
+              const subData = {
+                  email: document.getElementById('subscribeEmail').value
+              };
+              fetch('/api/subscribe', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify(subData)
+              }).then(res => res.json()).then(data => {
+                  alert(data.message);
+                  subscribeForm.reset();
+              }).catch(err => {
+                  alert('There was an error subscribing.');
+              });
+          });
+      }
+    </script>
   </body>
 </html>

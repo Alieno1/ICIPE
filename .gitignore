@@ -1,0 +1,11 @@
+# OS metadata
+.DS_Store
+._*
+Thumbs.db
+
+# Node
+node_modules/
+
+# IDE files
+.vscode/
+.idea/
